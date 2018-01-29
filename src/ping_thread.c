@@ -153,7 +153,7 @@ get_ping_request(const struct sys_info *info)
 		return NULL;
 	
 	int nret = safe_asprintf(&request,
-			"GET %s%sgw_id=%s&sys_uptime=%lu&sys_memfree=%u&sys_load=%.2f&nf_conntrack_count=%lu&cpu_usage=%3.2lf%%25&wifidog_uptime=%lu&online_clients=%d&offline_clients=%d&ssid=%s&version=%s&type=%s&name=%s&channel_path=%s&wired_passed=%d HTTP/1.1\r\n"
+			"GET %s%sgw_id=%s&gw_address=%s&gw_port=%d&sys_uptime=%lu&sys_memfree=%u&sys_load=%.2f&nf_conntrack_count=%lu&cpu_usage=%3.2lf%%25&wifidog_uptime=%lu&online_clients=%d&offline_clients=%d&ssid=%s&version=%s&type=%s&name=%s&channel_path=%s&wired_passed=%d HTTP/1.1\r\n"
              "User-Agent: ApFree WiFiDog %s\r\n"
 			 "Connection: close\r\n"
              "Host: %s\r\n"
@@ -161,6 +161,8 @@ get_ping_request(const struct sys_info *info)
              auth_server->authserv_path,
              auth_server->authserv_ping_script_path_fragment,
              config_get_config()->gw_id,
+             config_get_config()->gw_address,
+             config_get_config()->gw_port,
              info->sys_uptime,
              info->sys_memfree,
              info->sys_load,
