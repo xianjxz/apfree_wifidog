@@ -676,11 +676,11 @@ fw_sync_with_authserver(void)
 		debug(LOG_DEBUG,
 			  "Checking client %s for timeout:  Last updated %ld (%ld seconds ago), timeout delay %ld seconds, current time %ld, ",
 			  p1->ip, p1->counters.last_updated, current_time - p1->counters.last_updated,
-			  config->checkinterval * config->clienttimeout, current_time);
-		if (p1->counters.last_updated + (config->checkinterval * config->clienttimeout) <= current_time) {
+			  config->clienttimeout, current_time);
+		if (p1->counters.last_updated + config->clienttimeout <= current_time) {
 			/* Timing out user */
 			debug(LOG_DEBUG, "%s - Inactive for more than %ld seconds, removing client and denying in firewall",
-				  p1->ip, config->checkinterval * config->clienttimeout);
+				  p1->ip, config->clienttimeout);
 			LOCK_CLIENT_LIST();
 			tmp = client_list_find_by_client(p1);
 			if (NULL != tmp) {
