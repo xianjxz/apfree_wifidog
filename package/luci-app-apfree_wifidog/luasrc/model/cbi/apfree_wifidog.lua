@@ -22,9 +22,7 @@ if opkg.status(packageName)[packageName] then
 	return Map(packageName, translate("ApFree_WifiDog"), translate('<b style="color:red">Wifidog is not installed..</b>'))
 end
 
-m = Map("wifidog", translate("ApFree_WifiDog"), translate("<a target=\"_blank\" href=\"https://github.com/liudf0716/apfree_wifidog\">ApFree WiFiDog</a>" .. 
-															"在完全兼容原版WiFiDog的基础上，在功能、性能和稳定性方面做了大量工作、改进及优化，" ..
-															"目前在坤腾固件中广泛使用，使用ApFree WiFidog的在线路由器数量达到1万多台且还在继续增长..." ))
+m = Map("wifidog", translate("ApFree_WifiDog"))
 
 s = m:section(TypedSection, "wifidog", translate("运行状态"), get_status())
 s.anonymous = true
